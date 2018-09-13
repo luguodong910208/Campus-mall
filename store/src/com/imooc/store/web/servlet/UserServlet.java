@@ -15,6 +15,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import com.imooc.store.domain.User;
 import com.imooc.store.service.UserService;
 import com.imooc.store.service.serviceImp.UserServiceImp;
+import com.imooc.store.utils.MailUtils;
 import com.imooc.store.utils.MyBeanUtils;
 import com.imooc.store.utils.UUIDUtils;
 import com.imooc.store.web.base.BaseServlet;
@@ -56,7 +57,7 @@ public class UserServlet extends BaseServlet {
 			 userService.userRegist(user);
 			 //注册成功，向用户邮箱发送信息，跳转到提示页面
 			 //发送邮件
-			 //
+			 MailUtils.sendMail(user.getEmail(), user.getCode());
 			 request.setAttribute("msg", "用户注册成功，请激活！");
 			 return "/jsp/info.jsp";
 		 }catch(Exception e) {
