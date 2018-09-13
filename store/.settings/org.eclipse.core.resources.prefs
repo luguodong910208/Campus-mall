@@ -5,3 +5,5 @@ encoding//src/com/imooc/store/utils/MailUtils.java=UTF-8
 encoding//src/com/imooc/store/utils/MyBeanUtils.java=UTF-8
 encoding//src/com/imooc/store/utils/UUIDUtils.java=UTF-8
 encoding//src/com/imooc/store/utils/UploadUtils.java=UTF-8
+encoding//src/com/imooc/store/web/base/BaseServlet.java=UTF-8
+encoding//src/com/imooc/store/web/filter/EncodingFilter.java=UTF-8
