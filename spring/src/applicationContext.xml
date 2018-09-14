@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
        http://www.springframework.org/schema/beans/spring-beans.xsd">
@@ -15,10 +16,35 @@
    		<property name="name" value="奔驰"></property>
    		<property name="price" value="1000000"></property>
    </bean>
+   
+   <!-- 
+   		<bean id="car2" class="demo1.Car2" p:name="奔驰" p:price="1000000"></bean>
+    -->
    <!-- set方法注入对象类型的属性 -->
    <bean id="employee" class="demo1.Employee">
    		<!-- value:设置普通类型的值，ref:设置其他的类的id或name -->
    		<property name="name" value="winston"></property>
    		<property name="car2" ref="car2"></property>
    </bean>
+   <!-- 
+   		<bean id="employee" class="demo1.Employee" p:name="winston" p:car2-ref="car2"></bean>
+    -->
+  <bean id="carInfo" class="demo1.CarInfo"></bean>
+  <bean id="car2" class="demo1.Car2">
+  		<property name="name" value="#{carInfo.name}"></property>
+  		<property name="price" value="#{carInfo.calculatePrice()}"></property>
+  	</bean>
+    
+    <!-- 
+    SPEL属性注入
+  	<bean id="car2" class="demo1.Car2">
+  		<property name="name" value="#{奔驰}"></property>
+  		<property name="price" value="#{1000000}"></property>
+  	</bean>
+  	<bean>
+  		<property name="name" value="#{winston}"></property>
+  		<property name="car2" value="#{car2}"></property>
+  	</bean>
+  	
+     -->
 </beans>
