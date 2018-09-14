@@ -26,14 +26,49 @@
    		<property name="name" value="winston"></property>
    		<property name="car2" ref="car2"></property>
    </bean>
+   
+   <!-- spring集合属性注入 -->
+   <!-- 注入数组类型 -->
+   <bean id="collectionBean" class="demo2.CollectionBean">
+   <!-- 数组类型 -->
+   		<property name="arrs">
+   			<list>
+   				<value>winston</value>
+   				<value>tom</value>
+   				<value>jerry</value>
+   			</list>
+   		</property>
+   		
+   		<!-- 注入List集合 -->
+   		<property name="list">
+   			<list>
+   				<value>winston</value>
+   				<value>tom</value>
+   				<value>jerry</value>
+   			</list>
+   		</property>
+   		
+   		<!-- 注入set集合 -->
+   		<property name="set">
+   			<set>
+   				<value>winston</value>
+   				<value>tom</value>
+   				<value>jerry</value>
+   			</set>
+   		</property>
+   		<!-- 注入map集合 -->
+   		<property name="map">
+   			<map>
+   				<entry key="aaa" value="111"></entry>
+   				<entry key="bbb" value="22"></entry>
+   				<entry key="ccc" value="222"></entry>
+   			</map>
+   		</property>
+   </bean>
    <!-- 
    		<bean id="employee" class="demo1.Employee" p:name="winston" p:car2-ref="car2"></bean>
     -->
-  <bean id="carInfo" class="demo1.CarInfo"></bean>
-  <bean id="car2" class="demo1.Car2">
-  		<property name="name" value="#{carInfo.name}"></property>
-  		<property name="price" value="#{carInfo.calculatePrice()}"></property>
-  	</bean>
+
     
     <!-- 
     SPEL属性注入
@@ -45,6 +80,11 @@
   		<property name="name" value="#{winston}"></property>
   		<property name="car2" value="#{car2}"></property>
   	</bean>
-  	
+  	  <bean id="carInfo" class="demo1.CarInfo"></bean>
+  <bean id="car2" class="demo1.Car2">
+  		<property name="name" value="#{carInfo.name}"></property>
+  		<property name="price" value="#{carInfo.calculatePrice()}"></property>
+  	</bean>
      -->
+     
 </beans>
