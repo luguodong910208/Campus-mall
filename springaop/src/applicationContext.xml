@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:context="http://www.springframework.org/schema/context" 
+	   xmlns:aop="http://www.springframework.org/schema/aop" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+	   http://www.springframework.org/schema/context 
+	   http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+	   http://www.springframework.org/schema/aop 
+	   http://www.springframework.org/schema/aop/spring-aop-4.2.xsd ">
+	   
+	   <!-- 配置目标对象被增强的对象 -->
+	   <bean id="productDao" class="demo1.ProductDaoImpl"></bean>
+	   
+	   <!-- 将切面类交给sping进行管理 -->
+	   <bean id="myAspect" class="demo1.MyAspect"></bean>
+	   <!-- 通过aop的配置完成对目标类产品代理 -->
+	   <aop:config>
+	   		<!-- 表达式配置哪些类哪些方法需要进行增强 -->
+	   		<aop:pointcut expression="excution(* demo1.ProductDaoImpl.save(..))" id="pointcut1"/>
+	   		
+	   		<!-- 配置切面,ref为切面类的id值 -->
+	   		<aop:aspect ref="myAspect">
+	   			<aop:before method="checkPri" pointcut-ref="pointcut1"/>
+	   		</aop:aspect>
+	   </aop:config>
+	   
+</beans>
