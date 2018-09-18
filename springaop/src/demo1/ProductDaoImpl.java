@@ -15,11 +15,13 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public void find() {
 		System.out.println("找寻商品");
+		int i=1/0;
 	}
 
 	@Override
-	public void delete() {
+	public String delete() {
 		System.out.println("删除商品");
+		return "winston";
 	}
 
 }
