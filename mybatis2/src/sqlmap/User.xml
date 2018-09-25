@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="mybatis.mapper.UserMapper">
+	<!-- 通过ID查询一个用户 -->
+	<select id="findUserById" parameterType="Integer" resultType="mybatis.pojo.User">
+		select * from user where id= #{v}
+	</select>
+	<!-- 通过用户名查询对象 
+	#{} select * from user where id=? 因此，用于替代占位符
+	${} select * from user where username like 因此，用于替代字符串拼接
+	-->
+	<select id="findUserByUsername" parameterType="String" resultType="mybatis.pojo.User">
+		select * from user where username like "%${value}%"
+	</select>
+	<!--添加用户-->
+	<insert id="insertUser" parameterType="mybatis.pojo.User">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into user (username,birthday,address,sex) values (#{username},#{birthday},#{address},#{sex});
+	</insert>
+	<!-- 更新用户 -->
+	<update id="updateUserById" parameterType="mybatis.pojo.User">
+		update user
+		set username=#{username},sex=#{sex},birthday=#{birthday},address=#{address}
+		where id=#{id}
+	</update>
+	<!-- 删除用户 -->
+	<delete id="deleteUserById" parameterType="Integer">
+		deleter from user where id = #{id}
+	</delete>
+	<!-- 根据用户名模糊查询 -->
+	<select id="findUserByQueryVo" parameterType="QueryVo" resultType="mybatis.pojo.User">
+		select * from user where username like "%${user.username}%"
+	</select>
+	<!-- 查询用户数量 -->
+	<select id="userCount" resultType="int">
+		select count(1) from user
+	</select>
+</mapper>
