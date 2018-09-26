@@ -20,7 +20,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<!-- Mapper位置 -->
 	<mappers>
-		<mapper resource="mybatis/mapper/UserMapper.xml"/>
-		<package name="mybatis.mapper"/>
+		<mapper class="mybatis.mapper.UserMapper"/>
 	</mappers>
 </configuration>

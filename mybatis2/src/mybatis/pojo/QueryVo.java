@@ -1,9 +1,7 @@
 package mybatis.pojo;
 
-import java.io.Serializable;
 
-public class QueryVo implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class QueryVo {
 	private User user;
 	public User getUser() {
 		return user;

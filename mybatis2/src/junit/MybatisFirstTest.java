@@ -23,7 +23,7 @@ public class MybatisFirstTest {
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		//执行sql语句
-		User user = sqlSession.selectOne("test.findUserById",10);
+		User user = sqlSession.selectOne("mybatis.mapper.UserMapper.findUserById",10);
 		System.out.println(user);
 	}
 	//根据用户名实现模糊查询
@@ -36,7 +36,7 @@ public class MybatisFirstTest {
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		//执行sql语句
-		List<User> users = sqlSession.selectList("test.findUserByUsername","张");
+		List<User> users = sqlSession.selectList("mybatis.mapper.UserMapper.findUserByUsername","张");
 		for(User user:users) {
 			System.out.println(user);
 		}
@@ -56,7 +56,7 @@ public class MybatisFirstTest {
 		user.setAddress("shenzhen");
 		user.setBirthday(new Date());
 		user.setSex("男");
-		int i = sqlSession.insert("test.insertUser", user);
+		int i = sqlSession.insert("mybatis.mapper.UserMapper.insertUser", user);
 		sqlSession.commit();
 		System.out.println(user.getId());
 	}
@@ -76,7 +76,7 @@ public class MybatisFirstTest {
 		user.setAddress("hunan");
 		user.setBirthday(new Date());
 		user.setSex("女");
-		int i = sqlSession.update("test.updateUserById", user);
+		int i = sqlSession.update("mybatis.mapper.UserMapper.updateUserById", user);
 		sqlSession.commit();
 		System.out.println(user.getId());
 	}
@@ -90,7 +90,7 @@ public class MybatisFirstTest {
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		//执行sql语句
-		sqlSession.delete("test.deleteUserById", 32);
+		sqlSession.delete("mybatis.mapper.UserMapper.deleteUserById", 32);
 		sqlSession.commit();
 	}
 }
